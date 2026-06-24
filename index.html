@@ -57,6 +57,8 @@ box-shadow: 0 20px 40px -15px rgba(82, 82, 82, 0.15),
 }
 .virtual-card {
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative; /* เพิ่มเพื่อให้ pseudo-element ทำงานได้ */
+overflow: hidden; /* ซ่อนส่วนของดาวที่ล้นออกไป */
 }
 .virtual-card:hover {
 transform: translateY(-4px);
@@ -64,6 +66,23 @@ transform: translateY(-4px);
 .virtual-card:active {
 transform: translateY(2px) scale(0.98);
 }
+
+/* เพิ่มดาวสีขาวจางๆ ลงในช่องเลขบัญชี */
+.virtual-card::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 150px; /* ปรับขนาดดาวตามต้องการ */
+height: 150px;
+background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>');
+background-size: contain;
+background-repeat: no-repeat;
+opacity: 0.15; /* ปรับความจางของดาว */
+z-index: 0; /* ให้อยู่หลังข้อความ */
+}
+
 ::-webkit-scrollbar {
 width: 0px;
 }
@@ -76,7 +95,7 @@ colors: {
 cream: { 50: '#fffdfa', 100: '#fff9e6', 200: '#f7f4ec' },
 /* ปรับสีหลักของข้อความให้เป็นสีเทาเข้มนัวๆ สวยงามตามสั่ง (#525252) */
 brown: { 300: '#525252', 400: '#525252', 500: '#525252', 600: '#525252' },
-pink: { 50: '#ffdfea', 100: '#f7c2d9', 200: '#cfeeee', 300: '#f7f4ec', 400: '#525252', 500: '#525252' }
+pink: { 50: '#ffdfea', 100: '#f7c2d9', 200: '#cfeeee', 300: '#f7f4ec' },
 }
 }
 }
@@ -128,7 +147,7 @@ pink: { 50: '#ffdfea', 100: '#f7c2d9', 200: '#cfeeee', 300: '#f7f4ec', 400: '#52
 <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f7c2d9" stroke-width="2.5" stroke-dasharray="12 12" stroke-linecap="round" class="animate-dash" />
 </svg>
 <div class="rounded-[28px] overflow-hidden relative shadow-sm border-[4px] border-white">
-<img src="https://i.postimg.cc/nzy4GZ7M/IMG-4811.jpg" alt="บัญชีและช่องทางชำระเงิน" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x600/ffdfea/525252?text=Payment+Honey'">
+<img src="https://i.postimg.cc/Y0djqvSn/mi-m-ch-x-1789-20260623232045.png" alt="บัญชีและช่องทางชำระเงิน" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x600/ffdfea/525252?text=Payment+Honey'">
 </div>
 </div>
 
